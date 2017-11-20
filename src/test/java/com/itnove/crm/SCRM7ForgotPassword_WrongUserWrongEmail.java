@@ -15,7 +15,7 @@ public class SCRM7ForgotPassword_WrongUserWrongEmail extends BaseTest {
     public void testApp() throws InterruptedException, IOException {
         driver.navigate().to("http://crm.votarem.lu/index.php?module=Users&action=Login");
         PageForgotPassword recover = new PageForgotPassword(driver);
-        recover.WrongWrongFP();
+        recover.forgotPassword("user1", "cristina1@barcelonaactiva.cat");
 
         WebElement liniaerror = driver.findElement(By.id("generate_success"));
         wait.until(ExpectedConditions.visibilityOf(liniaerror));

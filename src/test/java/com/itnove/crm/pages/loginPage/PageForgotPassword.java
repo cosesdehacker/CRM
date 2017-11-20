@@ -28,50 +28,14 @@ public class PageForgotPassword {
     public WebElement botoSubmitFP;
 
 
-    public void ValidValidFP() {
-        driver.manage().window().maximize();
-
-        //Point newPoint = new Point(415, 463);
-        //driver.manage().window().setPosition(newPoint);
-
-        forgotButton.click();
-        quadreTextUserFP.click();
-        quadreTextUserFP.sendKeys("user");
-        quadreTextMailFP.click();
-        quadreTextMailFP.sendKeys("cristina@barcelonaactiva.cat");
-        botoSubmitFP.click();
-    }
-
-    public void WrongValidFP() {
+    public void forgotPassword(String user, String email) {
         driver.manage().window().maximize();
 
         forgotButton.click();
         quadreTextUserFP.click();
-        quadreTextUserFP.sendKeys("user1");
+        quadreTextUserFP.sendKeys(user);
         quadreTextMailFP.click();
-        quadreTextMailFP.sendKeys("cristina@barcelonaactiva.cat");
-        botoSubmitFP.click();
-    }
-
-    public void ValidWrongFP() {
-        driver.manage().window().maximize();
-
-        forgotButton.click();
-        quadreTextUserFP.click();
-        quadreTextUserFP.sendKeys("user");
-        quadreTextMailFP.click();
-        quadreTextMailFP.sendKeys("cristina1@barcelonaactiva.cat");
-        botoSubmitFP.click();
-    }
-
-    public void WrongWrongFP() {
-        driver.manage().window().maximize();
-
-        forgotButton.click();
-        quadreTextUserFP.click();
-        quadreTextUserFP.sendKeys("user1");
-        quadreTextMailFP.click();
-        quadreTextMailFP.sendKeys("cristina1@barcelonaactiva.cat");
+        quadreTextMailFP.sendKeys(email);
         botoSubmitFP.click();
     }
 

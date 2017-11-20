@@ -5,6 +5,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 
 public class PageLogin {
@@ -21,37 +23,15 @@ public class PageLogin {
     public WebElement botoLogin;
 
 
-    public void ValidValid() {
+    public void login(String user, String pswd) {
         quadreTextUser.click();
-        quadreTextUser.sendKeys("user");
+        quadreTextUser.sendKeys(user);
         quadreTextPassword.click();
-        quadreTextPassword.sendKeys("bitnami");
+        quadreTextPassword.sendKeys(pswd);
         botoLogin.click();
+
     }
 
-    public void WrongValid() {
-        quadreTextUser.click();
-        quadreTextUser.sendKeys("user1");
-        quadreTextPassword.click();
-        quadreTextPassword.sendKeys("bitnami");
-        botoLogin.click();
-    }
-
-    public void ValidWrong() {
-        quadreTextUser.click();
-        quadreTextUser.sendKeys("user");
-        quadreTextPassword.click();
-        quadreTextPassword.sendKeys("bitnami1");
-        botoLogin.click();
-    }
-
-    public void WrongWrong() {
-        quadreTextUser.click();
-        quadreTextUser.sendKeys("user1");
-        quadreTextPassword.click();
-        quadreTextPassword.sendKeys("bitnami1");
-        botoLogin.click();
-    }
 
     public PageLogin(WebDriver driver) {PageFactory.initElements(driver, this);
     this.driver = driver;}

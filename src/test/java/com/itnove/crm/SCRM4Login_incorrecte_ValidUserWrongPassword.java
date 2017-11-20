@@ -18,7 +18,7 @@ public class SCRM4Login_incorrecte_ValidUserWrongPassword extends BaseTest {
     public void testApp() throws InterruptedException, IOException {
         driver.navigate().to("http://crm.votarem.lu/index.php?module=Users&action=Login");
         PageLogin access = new PageLogin(driver);
-        access.ValidWrong();
+        access.login("user", "bitnami1");
 
         WebElement liniaError = driver.findElement(By.xpath("/html/body"));
         wait.until(ExpectedConditions.visibilityOf(liniaError));

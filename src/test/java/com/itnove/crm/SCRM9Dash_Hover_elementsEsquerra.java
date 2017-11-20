@@ -15,7 +15,7 @@ public class SCRM9Dash_Hover_elementsEsquerra extends BaseTest {
         driver.manage().window().fullscreen();
 
         PageLogin access = new PageLogin(driver);
-        access.ValidValid();
+        access.login("user", "bitnami");
 
         Thread.sleep(3000);
 

@@ -44,7 +44,7 @@ public class PageDashboard {
 
     //*****
 
-    //SALES
+  /*  //SALES
 
     @FindBy(xpath = ".//*[@id=\"moduleTab_9_Home\"]")
     public WebElement HomeSales;
@@ -59,73 +59,10 @@ public class PageDashboard {
     public WebElement OpportunitiesSales;
 
     @FindBy(xpath = "//*[@id='grouptab_0']/../ul/li[5]")
-    public WebElement LeadsSales;
+    public WebElement LeadsSales; */
 
     //*****
 
-
-    public void llistaSalesTopNav() {
-
-        Actions hover = new Actions(driver);
-        wait = (new WebDriverWait(driver, 10));
-
-
-        sales.click();
-        wait.until(ExpectedConditions.visibilityOf(HomeSales));
-
-        String current1 = driver.getCurrentUrl();
-        HomeSales.click();
-            wait.until(ExpectedConditions.visibilityOf(sales));
-        Assert.assertTrue(!(current1.equals(driver.getCurrentUrl())));
-
-        sales.click();
-            wait.until(ExpectedConditions.visibilityOf(AccountsSales));
-
-        String current2 = driver.getCurrentUrl();
-        AccountsSales.click();
-            wait.until(ExpectedConditions.visibilityOf(sales));
-        Assert.assertTrue(!(current2.equals(driver.getCurrentUrl())));
-
-        sales.click();
-            wait.until(ExpectedConditions.visibilityOf(ContactsSales));
-
-        String current3 = driver.getCurrentUrl();
-        ContactsSales.click();
-            wait.until(ExpectedConditions.alertIsPresent());
-            wait.until(ExpectedConditions.visibilityOf(sales));
-        Assert.assertTrue(!(current3.equals(driver.getCurrentUrl())));
-
-        hover.moveToElement(sales).build().perform();
-            wait.until(ExpectedConditions.visibilityOf(OpportunitiesSales));
-
-        String current4 = driver.getCurrentUrl();
-        OpportunitiesSales.click();
-            wait.until(ExpectedConditions.visibilityOf(sales));
-        Assert.assertTrue(!(current4.equals(driver.getCurrentUrl())));
-
-        hover.moveToElement(sales).build().perform();
-            wait.until(ExpectedConditions.visibilityOf(LeadsSales));
-
-        String current5 = driver.getCurrentUrl();
-        LeadsSales.click();
-            wait.until(ExpectedConditions.visibilityOf(sales));
-        Assert.assertTrue(!(current5.equals(driver.getCurrentUrl())));
-
-          // OPCIÓ JORDI PERALTA
-
-         /* List<WebElement> llistaSales = driver.findElements(By.xpath("//*[@id='grouptab_0']/../ul/li"));
-
-
-        for (int i = 1; i<llistaSales.size()+1; i++) {
-            String current = driver.getCurrentUrl();
-            sales.click();
-            WebElement elementCheck = driver.findElement(By.xpath("//*[@id='grouptab_0']/../ul/li[" + i + "]"));
-            elementCheck.click();
-            Assert.assertTrue(!(current.equals(driver.getCurrentUrl())));
-
-            }*/
-
-        }
 
     public void HoverEsquerraTopNav() {
 
@@ -140,6 +77,25 @@ public class PageDashboard {
                     findElement(By.xpath(".//*[@id=\"toolbar\"]/ul[1]/li[" + i + "]"));
 
             hover.moveToElement(elementTopNavEsquerra).build().perform();
+
+        }
+    }
+
+        public void clickSalesDesplegable() {
+        List<WebElement> desplegarSales = driver.findElements(By.xpath("id('grouptab_0')/../ul/li"));
+
+        for (int i = 1; i < (desplegarSales.size()+1); i++) {
+
+            String current = driver.getCurrentUrl();
+            sales.click();
+
+            WebElement elementSales = driver.
+                    findElement(By.xpath("id('grouptab_0')/../ul/li[" + i + "]"));
+            elementSales.click();
+
+            Assert.assertTrue(!(current.equals(driver.getCurrentUrl())));
+
+
         }
 
     }

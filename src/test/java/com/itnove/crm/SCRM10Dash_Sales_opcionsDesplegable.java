@@ -14,12 +14,12 @@ public class SCRM10Dash_Sales_opcionsDesplegable extends BaseTest {
         driver.manage().window().fullscreen();
 
         PageLogin access = new PageLogin(driver);
-        access.ValidValid();
+        access.login("user", "bitnami");
 
         Thread.sleep(3000);
 
         PageDashboard pageDashboard = new PageDashboard(driver);
-        pageDashboard.llistaSalesTopNav();
+        pageDashboard.clickSalesDesplegable();
 
 
 

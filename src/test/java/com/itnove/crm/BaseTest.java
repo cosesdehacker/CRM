@@ -11,10 +11,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.io.File;
 import java.io.IOException;
 
-
-/**
- * Created by guillem on 29/02/16.
- */
 public class BaseTest {
     public RemoteWebDriver driver;
     public WebDriverWait wait;
@@ -25,6 +21,9 @@ public class BaseTest {
         DesiredCapabilities capabilities = DesiredCapabilities.chrome();
         System.setProperty("webdriver.chrome.driver", "src" + File.separator + "main" + File.separator + "resources" + File.separator + "chromedriver-macos");
         driver = new ChromeDriver(capabilities);
+        //DesiredCapabilities capabilities = DesiredCapabilities.firefox();
+        //System.setProperty("webdriver.gecko.driver", "src" + File.separator + "main" + File.separator + "resources" + File.separator + "geckodriver-macos");
+        //driver = new FirefoxDriver(capabilities);
         wait = (new WebDriverWait(driver, 10));
         hover = new Actions(driver);
     }
