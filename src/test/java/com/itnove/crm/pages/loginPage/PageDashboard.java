@@ -97,19 +97,16 @@ public class PageDashboard {
         List<WebElement> desplegarSales = driver.findElements(By.xpath("id('grouptab_0')/../ul/li"));
         System.out.println(desplegarSales.size());
         Actions hover = new Actions(driver);
-
-
+        wait = new WebDriverWait(driver,10);
 
         for (int i = 1; i < (desplegarSales.size()+1); i++) {
-
             String current = driver.getCurrentUrl();
             hover.moveToElement(sales).click().build().perform();
-            Thread.sleep(3000);
-
+            Thread.sleep(2000);
             WebElement elementSales = driver.
                     findElement(By.xpath("id('grouptab_0')/../ul/li[" + i + "]"));
             hover.moveToElement(sales).moveToElement(elementSales).click().build().perform();
-            Thread.sleep(3000);
+            Thread.sleep(2000);
             Assert.assertTrue(!(current.equals(driver.getCurrentUrl())));
         }
 
