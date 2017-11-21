@@ -21,6 +21,8 @@ public class PageDashboard {
     public WebDriverWait wait;
 
 
+    // BARRA NAVEGACIÓ SUPERIOR ESQUERRA
+
     @FindBy(xpath = "/html/body/div[2]/nav/div/div[2]/ul/li[1]")
     public WebElement homeIcon;
 
@@ -42,7 +44,11 @@ public class PageDashboard {
     @FindBy(id = "grouptab_5")
     public WebElement all;
 
-    //*****
+    // BARRA NAVEGACIÓ SUPERIOR DRETA
+
+    @FindBy(id = "globalLinks")
+    public WebElement userIcon;
+
 
   /*  //SALES
 
@@ -61,7 +67,12 @@ public class PageDashboard {
     @FindBy(xpath = "//*[@id='grouptab_0']/../ul/li[5]")
     public WebElement LeadsSales; */
 
-    //*****
+    // ICONA USUARI
+
+    @FindBy(id = "logout_link")
+    public WebElement logOut;
+
+    //*************************************
 
 
     public void HoverEsquerraTopNav() {
@@ -81,22 +92,34 @@ public class PageDashboard {
         }
     }
 
-        public void clickSalesDesplegable() {
+    public void clickSalesDesplegable() throws InterruptedException {
+
         List<WebElement> desplegarSales = driver.findElements(By.xpath("id('grouptab_0')/../ul/li"));
+        System.out.println(desplegarSales.size());
+        Actions hover = new Actions(driver);
+
+
 
         for (int i = 1; i < (desplegarSales.size()+1); i++) {
 
             String current = driver.getCurrentUrl();
-            sales.click();
+            hover.moveToElement(sales).click().build().perform();
+            Thread.sleep(3000);
 
             WebElement elementSales = driver.
                     findElement(By.xpath("id('grouptab_0')/../ul/li[" + i + "]"));
-            elementSales.click();
-
+            hover.moveToElement(sales).moveToElement(elementSales).click().build().perform();
+            Thread.sleep(3000);
             Assert.assertTrue(!(current.equals(driver.getCurrentUrl())));
-
-
         }
+
+    }
+
+    public void funcioLogOut() {
+
+        userIcon.click();
+        logOut.click();
+
 
     }
 

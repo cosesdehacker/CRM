@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import java.io.IOException;
 
-public class SCRM9Dash_Hover_elementsEsquerra extends BaseTest {
+public class SCRM16Dash_Logout extends BaseTest {
 
     @Test
     public void testApp() throws InterruptedException, IOException {
@@ -14,13 +14,13 @@ public class SCRM9Dash_Hover_elementsEsquerra extends BaseTest {
         driver.navigate().to("http://crm.votarem.lu/index.php?module=Users&action=Login");
         driver.manage().window().fullscreen();
 
-        PageLogin pageLogin = new PageLogin(driver);
-        pageLogin.login("user", "bitnami");
+        PageLogin access = new PageLogin(driver);
+        access.login("user", "bitnami");
 
         Thread.sleep(3000);
 
         PageDashboard pageDashboard = new PageDashboard(driver);
-        pageDashboard.HoverEsquerraTopNav();
+        pageDashboard.funcioLogOut();
 
         }
 
