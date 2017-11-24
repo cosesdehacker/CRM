@@ -1,4 +1,4 @@
-package com.itnove.crm.pages.loginPage; //NO FUNCIONA... JA NO SÉ QUÈ MÉS PROVAR
+package com.itnove.crm.pages.loginPage;
 
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -20,7 +20,6 @@ public class PageDashboard {
     private WebDriver driver;
     public WebDriverWait wait;
 
-
     // BARRA NAVEGACIÓ SUPERIOR ESQUERRA
 
     @FindBy(xpath = "/html/body/div[2]/nav/div/div[2]/ul/li[1]")
@@ -32,54 +31,60 @@ public class PageDashboard {
     @FindBy(id = "grouptab_1")
     public WebElement marketing;
 
-    @FindBy(id = "grouptab_2")
-    public WebElement support1;
-
-    @FindBy(id = "grouptab_3")
-    public WebElement activities;
-
     @FindBy(id = "grouptab_4")
     public WebElement collaboration;
 
-    @FindBy(id = "grouptab_5")
-    public WebElement all;
-
     // BARRA NAVEGACIÓ SUPERIOR DRETA
 
-    @FindBy(id = "globalLinks")
+    //CREATE
+
+    @FindBy(xpath = "(.//*[@id='quickcreatetop']/a)[3]")
+    public WebElement createButton;
+
+    @FindBy(xpath = "(.//*[@id='quickcreatetop']/ul)[3]/li[1]/a")
+    public WebElement createAccount;
+
+    @FindBy(xpath = "(.//*[@id='quickcreatetop']/ul)[3]/li[2]/a")
+    public WebElement createContact;
+
+
+    //LUPA
+
+    @FindBy(xpath = "id('ajaxHeader')/nav[1]/div[1]/div[5]/ul/li[2]")
+    public WebElement lupa;
+
+    @FindBy(xpath = "id('ajaxHeader')/nav[1]/div[1]/div[5]/ul/li[2]/div/form/div/input")
+    public WebElement quadreTextLupa;
+
+    @FindBy(xpath = "id('ajaxHeader')/nav[1]/div[1]/div[5]/ul/li[2]/div/form/div/span")
+    public WebElement lupaPetita;
+
+    @FindBy(xpath = "id('pagecontent')/form/input[3]")
+    public WebElement quadreCercaLupaSecundari;
+
+    @FindBy(xpath = "id('pagecontent')/table[1]/tbody[2]/tr/td[2]/a")
+    public WebElement quadreNomLupaSecundari;
+
+    @FindBy(xpath = "id('pagecontent')/div[1]/h2[1]")
+    public WebElement titolResultat;
+
+    //NOTIFICATIONS
+
+    //USUARI
+
+    @FindBy(xpath = "id('ajaxHeader')/nav[1]/div[1]/div[5]/ul/li[5]")
     public WebElement userIcon;
 
-
-  /*  //SALES
-
-    @FindBy(xpath = ".//*[@id=\"moduleTab_9_Home\"]")
-    public WebElement HomeSales;
-
-    @FindBy(xpath = "//*[@id='grouptab_0']/../ul/li[2]")
-    public WebElement AccountsSales;
-
-    @FindBy(id = "//*[@id='grouptab_0']/../ul/li[3]")
-    public WebElement ContactsSales;
-
-    @FindBy(xpath = "//*[@id='grouptab_0']/../ul/li[4]")
-    public WebElement OpportunitiesSales;
-
-    @FindBy(xpath = "//*[@id='grouptab_0']/../ul/li[5]")
-    public WebElement LeadsSales; */
-
-    // ICONA USUARI
-
-    @FindBy(id = "logout_link")
+    @FindBy(xpath = "id('ajaxHeader')/nav[1]/div[1]/div[5]/ul/li[5]/ul/li[6]")
     public WebElement logOut;
 
-    //*************************************
+
+    //*****************************
 
 
-    public void HoverEsquerraTopNav() {
+    //BARRA NAVEGACIÓ SUPERIOR ESQUERRA
 
-        Actions hover = new Actions(driver);
-
-
+    public void HoverEsquerraTopNav(Actions hover) {
         List<WebElement> topNavEsquerra = driver.findElements(By.className("topnav"));
         System.out.println(topNavEsquerra.size());
 
@@ -95,9 +100,7 @@ public class PageDashboard {
     public void clickSalesDesplegable() throws InterruptedException {
 
         List<WebElement> desplegarSales = driver.findElements(By.xpath("id('grouptab_0')/../ul/li"));
-        System.out.println(desplegarSales.size());
         Actions hover = new Actions(driver);
-        wait = new WebDriverWait(driver,10);
 
         for (int i = 1; i < (desplegarSales.size()+1); i++) {
             String current = driver.getCurrentUrl();
@@ -112,15 +115,103 @@ public class PageDashboard {
 
     }
 
+    public void clickMarketingDesplegable() throws InterruptedException {
+
+        List<WebElement> desplegarMarketing = driver.findElements(By.xpath("id('grouptab_1')/../ul/li"));
+        Actions hover = new Actions(driver);
+
+        for (int i = 1; i < (desplegarMarketing.size()+1); i++) {
+            String current = driver.getCurrentUrl();
+            hover.moveToElement(marketing).click().build().perform();
+            Thread.sleep(2000);
+            WebElement elementMarketing = driver.
+                    findElement(By.xpath("id('grouptab_1')/../ul/li[" + i + "]"));
+            hover.moveToElement(marketing).moveToElement(elementMarketing).click().build().perform();
+            Thread.sleep(2000);
+            Assert.assertTrue(!(current.equals(driver.getCurrentUrl())));
+        }
+
+    }
+
+    public void clickCollaborationDesplegable() throws InterruptedException {
+
+        List<WebElement> desplegarCollaboration = driver.findElements(By.xpath("id('grouptab_4')/../ul/li"));
+        Actions hover = new Actions(driver);
+
+        for (int i = 1; i < (desplegarCollaboration.size()+1); i++) {
+            String current = driver.getCurrentUrl();
+            hover.moveToElement(collaboration).click().build().perform();
+            Thread.sleep(2000);
+            WebElement elementCollaboration = driver.
+                    findElement(By.xpath("id('grouptab_4')/../ul/li[" + i + "]"));
+            hover.moveToElement(marketing).moveToElement(elementCollaboration).click().build().perform();
+            Thread.sleep(2000);
+            Assert.assertTrue(!(current.equals(driver.getCurrentUrl())));
+        }
+
+    }
+
+    //LUPA
+
+   public void lupa(String textCerca) throws InterruptedException {
+
+       wait = (new WebDriverWait(driver, 10));
+
+       lupa.click();
+       quadreTextLupa.click();
+       quadreTextLupa.sendKeys(textCerca);
+       lupaPetita.click();
+       Assert.assertTrue(quadreCercaLupaSecundari.getAttribute("value").equals(textCerca));
+
+       quadreNomLupaSecundari.click();
+       wait.until(ExpectedConditions.visibilityOf(titolResultat));
+       Assert.assertTrue(titolResultat.getText().contains(textCerca.toUpperCase()));
+
+   }
+
+   //CREATE
+
+    public void createButtonClick(Actions hover) throws InterruptedException {
+           hover.moveToElement(createButton)
+                   .moveToElement(createButton)
+                   .click().build().perform();
+    }
+
+    public void hoverAndClickEveryCreate(WebDriver driver, Actions hover) throws InterruptedException {
+        createButtonClick(hover);
+        String listElements = "(.//*[@id='quickcreatetop']/ul)[3]/li";
+        String lsl = listElements + "/a";
+        List<WebElement> listOfCreates = driver.findElements(By.xpath(lsl));
+        for (int i = 1; i <= listOfCreates.size(); i++) {
+            createButtonClick(hover);
+            WebElement eachCreateItem = driver.findElement(By.xpath(listElements + "[" + i + "]/a"));
+            hover.moveToElement(createButton)
+                    .moveToElement(eachCreateItem)
+                    .click().build().perform();
+            Thread.sleep(3000);
+            System.out.println(i);
+        }
+    }
+
+    public void hoverAndClick(WebElement element, Actions hover) {
+
+        hover.moveToElement(element)
+                .moveToElement(element)
+                .click().build().perform();
+    }
+
+    //ICONA USUARI
+
     public void funcioLogOut() {
 
         userIcon.click();
         logOut.click();
 
+   }
 
-    }
+    public PageDashboard(WebDriver driver) {
 
-    public PageDashboard(WebDriver driver) { PageFactory.initElements(driver, this);
+        PageFactory.initElements(driver, this);
         this.driver = driver;
     }
 }

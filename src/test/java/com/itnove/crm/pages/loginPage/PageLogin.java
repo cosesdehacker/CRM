@@ -1,6 +1,5 @@
 package com.itnove.crm.pages.loginPage;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -12,6 +11,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class PageLogin {
 
     private WebDriver driver;
+    public WebDriverWait wait;
 
     @FindBy(id = "user_name")
     public WebElement quadreTextUser;
@@ -23,7 +23,9 @@ public class PageLogin {
     public WebElement botoLogin;
 
 
+
     public void login(String user, String pswd) {
+
         quadreTextUser.click();
         quadreTextUser.sendKeys(user);
         quadreTextPassword.click();
@@ -32,8 +34,14 @@ public class PageLogin {
 
     }
 
+    public void logout() {
 
-    public PageLogin(WebDriver driver) {PageFactory.initElements(driver, this);
-    this.driver = driver;}
+        wait = (new WebDriverWait(driver, 10));
+        wait.until(ExpectedConditions.visibilityOf(quadreTextUser));
+    }
+
+    public PageLogin(WebDriver driver) {
+        PageFactory.initElements(driver, this);
+        this.driver = driver;}
 
 }

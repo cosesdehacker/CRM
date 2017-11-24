@@ -1,18 +1,16 @@
-package com.itnove.crm;
+package com.itnove.crm.SuiteDashboard;
 
+import com.itnove.crm.BaseTest;
 import com.itnove.crm.pages.loginPage.PageDashboard;
 import com.itnove.crm.pages.loginPage.PageLogin;
 import org.junit.Test;
 
 import java.io.IOException;
 
-public class SCRM9Dash_Hover_elementsEsquerra extends BaseTest {
+public class SCRM17Dash_Lupa extends BaseTest {
 
     @Test
     public void testApp() throws InterruptedException, IOException {
-
-        driver.navigate().to("http://crm.votarem.lu/index.php?module=Users&action=Login");
-        driver.manage().window().fullscreen();
 
         PageLogin pageLogin = new PageLogin(driver);
         pageLogin.login("user", "bitnami");
@@ -20,13 +18,12 @@ public class SCRM9Dash_Hover_elementsEsquerra extends BaseTest {
         Thread.sleep(3000);
 
         PageDashboard pageDashboard = new PageDashboard(driver);
-        pageDashboard.HoverEsquerraTopNav();
-
-        }
+        pageDashboard.lupa("Ripoll");
+        pageDashboard.lupa("Cristina");
 
     }
 
-
+}
 
 
 

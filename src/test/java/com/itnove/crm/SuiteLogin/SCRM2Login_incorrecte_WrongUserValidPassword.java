@@ -1,5 +1,6 @@
-package com.itnove.crm;
+package com.itnove.crm.SuiteLogin;
 
+import com.itnove.crm.BaseTest;
 import com.itnove.crm.pages.loginPage.PageLogin;
 import org.apache.commons.io.FileUtils;
 import org.junit.Test;
@@ -16,9 +17,9 @@ public class SCRM2Login_incorrecte_WrongUserValidPassword extends BaseTest {
 
     @Test
     public void testApp() throws InterruptedException, IOException {
-        driver.navigate().to("http://crm.votarem.lu/index.php?module=Users&action=Login");
-        PageLogin access = new PageLogin(driver);
-        access.login("user1", "bitnami");
+
+        PageLogin pageLogin = new PageLogin(driver);
+        pageLogin.login("user1", "bitnami");
 
         WebElement liniaError = driver.findElement(By.xpath("/html/body"));
         wait.until(ExpectedConditions.visibilityOf(liniaError));

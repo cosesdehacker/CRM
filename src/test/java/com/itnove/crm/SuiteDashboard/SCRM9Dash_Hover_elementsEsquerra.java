@@ -1,26 +1,24 @@
-package com.itnove.crm;
+package com.itnove.crm.SuiteDashboard;
 
+import com.itnove.crm.BaseTest;
 import com.itnove.crm.pages.loginPage.PageDashboard;
 import com.itnove.crm.pages.loginPage.PageLogin;
 import org.junit.Test;
 
 import java.io.IOException;
 
-public class SCRM16Dash_Logout extends BaseTest {
+public class SCRM9Dash_Hover_elementsEsquerra extends BaseTest {
 
     @Test
     public void testApp() throws InterruptedException, IOException {
 
-        driver.navigate().to("http://crm.votarem.lu/index.php?module=Users&action=Login");
-        driver.manage().window().fullscreen();
-
-        PageLogin access = new PageLogin(driver);
-        access.login("user", "bitnami");
+        PageLogin pageLogin = new PageLogin(driver);
+        pageLogin.login("user", "bitnami");
 
         Thread.sleep(3000);
 
         PageDashboard pageDashboard = new PageDashboard(driver);
-        pageDashboard.funcioLogOut();
+        pageDashboard.HoverEsquerraTopNav(hover);
 
         }
 

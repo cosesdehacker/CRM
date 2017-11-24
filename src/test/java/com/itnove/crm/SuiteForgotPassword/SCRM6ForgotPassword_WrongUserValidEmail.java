@@ -1,5 +1,6 @@
-package com.itnove.crm;
+package com.itnove.crm.SuiteForgotPassword;
 
+import com.itnove.crm.BaseTest;
 import com.itnove.crm.pages.loginPage.PageForgotPassword;
 import org.apache.commons.io.FileUtils;
 import org.junit.Test;
@@ -16,9 +17,9 @@ public class SCRM6ForgotPassword_WrongUserValidEmail extends BaseTest {
 
     @Test
     public void testApp() throws InterruptedException, IOException {
-        driver.navigate().to("http://crm.votarem.lu/index.php?module=Users&action=Login");
-        PageForgotPassword recover = new PageForgotPassword(driver);
-        recover.forgotPassword("user1", "cristina@barcelonaactiva.cat");
+
+        PageForgotPassword pageForgotPassword = new PageForgotPassword(driver);
+        pageForgotPassword.forgotPassword("user1", "cristina@barcelonaactiva.cat");
 
         WebElement liniaerror = driver.findElement(By.id("generate_success"));
         wait.until(ExpectedConditions.visibilityOf(liniaerror));
