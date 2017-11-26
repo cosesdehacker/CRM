@@ -1,35 +1,30 @@
 package com.itnove.crm.pages.loginPage;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.io.File;
+import java.util.List;
 
 public class PageCreateDocument {
 
     private WebDriver driver;
     public WebDriverWait wait;
 
-    @FindBy(id = "SAVE")
-    public WebElement saveButton;
-
     @FindBy(id = "filename_file")
     public WebElement fileName;
 
-    @FindBy(id = "status_id")
-    public WebElement statusID;
+    @FindBy(id = "SAVE")
+    public WebElement saveButton;
 
-    @FindBy(id = "document_name")
-    public WebElement documentName;
-
-    @FindBy(xpath = "id(\"detailpanel_-1\")/div[1]/div[1]/div[6]/div[2]/input[1]")
+    @FindBy(xpath = "id(\"detailpanel_-1\")/div[1]/div[1]/div[6]/div[2]/input")
     public WebElement revision;
 
     @FindBy(id = "template_type")
-    public WebElement documentType;
+    public WebElement templateType;
 
     @FindBy(id = "is_template")
     public WebElement templateTick;
@@ -41,15 +36,15 @@ public class PageCreateDocument {
     public WebElement expirationDate;
 
     @FindBy(id = "category_id")
-    public WebElement category;
+    public WebElement categoria;
 
     @FindBy(id = "subcategory_id")
-    public WebElement subcategory;
+    public WebElement subcategoria;
 
     @FindBy(id = "description")
     public WebElement description;
 
-    @FindBy(xpath = "id(\"detailpanel_-1\")/div[1]/div[1]/div[23]/div[2]/input[1]")
+    @FindBy(xpath = "id(\"detailpanel_-1\")/div[1]/div[1]/div[23]/div[2]/input[3]")
     public WebElement relatedDoc;
 
     @FindBy(id = "related_doc_rev_id")
@@ -60,88 +55,120 @@ public class PageCreateDocument {
 
     //*****************************
 
-    public void fillInFields() {
 
-        /* CREATEDOCUMENTPAGEGUILLEM
 
-        @FindBy(id = "filename_file")
-    public WebElement filename;
+    public void browseFileName(String nom){
 
-    @FindBy(xpath = "(.//*[@id='SAVE'])[1]")
-    public WebElement saveButton;
-
-        public void browseFile(String name){
-            filename.sendKeys(name);
-        }
-
-        public void saveDocument(){
-            saveButton.click();
-        }
-
-    public CreateDocumentPage(WebDriver driver) {
-        PageFactory.initElements(driver, this);
+        fileName.sendKeys(nom);
     }
 
-    CLASSE CREATEDOCUMENT GUILLEM
+    public void fillInFields() throws InterruptedException {
 
-    @Test
-    public void testApp() throws InterruptedException {
+        List<WebElement> opcionsStatusDropdown = driver.findElements(By.xpath("//*[@id=\"status_id\"]/option"));
 
-        CreateDocumentPage createDocumentPage = new CreateDocumentPage(driver);
-        File file = new File("src" + File.separator + "main" + File.separator + "resources" + File.separator + "2-logo-B_activa.png");
-        createDocumentPage.browseFile(file.getAbsolutePath());
-        createDocumentPage.saveDocument();
-     }
-}
-        */
+        for (int i = 1; i < (opcionsStatusDropdown.size()+1); i++) {
+            WebElement opcioStatus =
+                    driver.findElement(
+                            By.xpath("//*[@id=\"status_id\"]/option[" + i + "]"));
+            if (opcioStatus.getAttribute("value").equals("Draft")) {
 
+                opcioStatus.click();
 
-        fileName.click();
-
-        File file = new File("nasrodo" + File.separator + "Desktop" + File.separator + "documentA.docx");
-        fileName.sendKeys(file.getAbsolutePath());
-
-
-        statusID.click();
-        statusID.sendKeys("active");
-
-        documentName.click();
-        documentName.sendKeys("Document A");
+            }
+        }
 
         revision.click();
+        revision.clear();
         revision.sendKeys("2");
 
-        documentType.click();
-        documentType.sendKeys("EULA");
+        templateType.click();
+
+        List<WebElement> opcionsDocumentTypeDropdown = driver.findElements(By.xpath("id('template_type')/option"));
+
+        outerloop:
+
+        for (int i =1; i < opcionsDocumentTypeDropdown.size()+1; i++) {
+
+            WebElement opcioDocumentType =
+                    driver.findElement(By.xpath("id('template_type')/option[" + i + "]"));
+
+            if (opcioDocumentType.getAttribute("value").equalsIgnoreCase("EULA")) {
+                opcioDocumentType.click();
+                break outerloop;
+            }
+
+        }
 
         templateTick.click();
 
         publishDate.click();
-        publishDate.sendKeys("26/11/2017");
+        publishDate.clear();
+        publishDate.sendKeys("2017-11-26");
 
         expirationDate.click();
-        expirationDate.sendKeys("26703/2018");
+        expirationDate.clear();
+        expirationDate.sendKeys("2018-03-26");
 
-        category.click();
-        category.sendKeys("Sales");
+        categoria.click();
 
-        subcategory.click();
-        subcategory.sendKeys("Marketing collateral");
+        List<WebElement> opcionsCategoryDropdown = driver.findElements(By.xpath("id('category_id')/option"));
+
+        System.out.println(opcionsCategoryDropdown.size());
+
+        outlooper:
+        for (int i = 1; i < (opcionsCategoryDropdown.size()+1); i++) {
+            WebElement opcioCategory = driver.findElement(By.xpath("id(\"category_id\")/option[" + i + "]"));
+            if (opcioCategory.getAttribute("value").equalsIgnoreCase("Knowledege Base")) {
+
+                opcioCategory.click();
+                break outlooper;
+            }
+
+            System.out.println(i);
+        }
+
+        subcategoria.click();
+
+        List<WebElement> opcionsSubcategoryDropdown = driver.findElements(By.xpath("id('subcategory_id')/option"));
+
+        System.out.println(opcionsSubcategoryDropdown.size());
+
+        outlooper:
+        for (int i = 1; i < (opcionsSubcategoryDropdown.size()+1); i++) {
+            WebElement opcioSubcategory = driver.findElement(By.xpath("id(\"subcategory_id\")/option[" + i + "]"));
+            if (opcioSubcategory.getAttribute("value").equalsIgnoreCase("Marketing collateral")) {
+
+                opcioSubcategory.click();
+                break outlooper;
+            }
+
+            System.out.println(i);
+
+        }
 
         description.click();
         description.sendKeys("Document about anything");
 
-        relatedDoc.click();
-        relatedDoc.sendKeys("Documento molon");
-
-        relatedDocumentRevision.click();
-
         assignedTo.click();
+        assignedTo.clear();
         assignedTo.sendKeys("Cristina");
 
-        saveButton.click();
 
     }
+
+    public void browseRelatedDocName(String nom) throws InterruptedException {
+
+        relatedDoc.sendKeys(nom);
+
+        Thread.sleep(6000);
+    }
+
+    public void saveDocument(){
+
+        saveButton.click();
+    }
+
+        /*
 
     public void recoverDataDocumentIntroDocument() throws InterruptedException {
 
@@ -159,7 +186,7 @@ public class PageCreateDocument {
 
         saveButton.click();
 
-    }
+    }*/
 
     public PageCreateDocument(WebDriver driver) {
         PageFactory.initElements(driver, this);

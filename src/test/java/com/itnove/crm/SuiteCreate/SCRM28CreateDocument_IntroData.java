@@ -1,7 +1,6 @@
 package com.itnove.crm.SuiteCreate;
 
 import com.itnove.crm.BaseTest;
-import com.itnove.crm.pages.loginPage.PageCreateAccount;
 import com.itnove.crm.pages.loginPage.PageCreateDocument;
 import com.itnove.crm.pages.loginPage.PageDashboard;
 import com.itnove.crm.pages.loginPage.PageLogin;
@@ -27,12 +26,16 @@ public class SCRM28CreateDocument_IntroData extends BaseTest{
         pageDashboard.hoverAndClick(pageDashboard.createDocument, hover);
 
         PageCreateDocument pageCreateDocument = new PageCreateDocument(driver);
+        File file = new File(File.separator + "Users" + File.separator + "nasrodo" + File.separator + "Desktop" + File.separator + "document A.docx");
+        pageCreateDocument.browseFileName(file.getAbsolutePath());
         pageCreateDocument.fillInFields();
+
+        pageCreateDocument.browseRelatedDocName("2-logo-B_activa.png");
+
+        pageCreateDocument.saveDocument();
 
         File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
         FileUtils.copyFile(scrFile, new File("/Users/nasrodo/SCRM28.png"));
-
-
 
     }
 
