@@ -78,6 +78,9 @@ public class PageCreateContact {
     @FindBy(id = "description")
     public WebElement description;
 
+    @FindBy(xpath = "id(\"btn_clr_assigned_user_name\")/img[1]")
+    public WebElement clearAssignedTo;
+
     @FindBy(id = "assigned_user_name")
     public WebElement assignedTo;
 
@@ -87,7 +90,7 @@ public class PageCreateContact {
     @FindBy(id = "report_to_name")
     public WebElement reportsTo;
 
-    @FindBy(id = "campaign")
+    @FindBy(id = "campaign_name")
     public WebElement campaign;
 
     //*****************************
@@ -96,85 +99,97 @@ public class PageCreateContact {
     public void fillInFields() {
 
         firstNameSalutation.click();
-        firstNameSalutation.sendKeys();
+        firstNameSalutation.sendKeys("Mrs");
 
         firstName.click();
-        firstName.sendKeys("Maria");
+        firstName.sendKeys("Cristina");
 
         lastName.click();
-        lastName.sendKeys();
+        lastName.sendKeys("Matthews");
 
         phoneWork.click();
-        phoneWork.sendKeys();
+        phoneWork.sendKeys("33-33333333");
 
         phoneMobile.click();
-        phoneMobile.sendKeys();
+        phoneMobile.sendKeys("11-11111111");
 
         title.click();
-        title.sendKeys();
+        title.sendKeys("Dr.");
 
         department.click();
-        department.sendKeys();
+        department.sendKeys("Cardiology");
 
         accountName.click();
-        accountName.sendKeys();
+        accountName.sendKeys("Maria");
 
         phoneFax.click();
-        phoneFax.sendKeys();
+        phoneFax.sendKeys("44-44444444");
 
         email.click();
-        email.sendKeys();
+        email.sendKeys("cristina@barcelonaactiva.cat");
 
         primaryAddressStreet.click();
-        primaryAddressStreet.sendKeys();
+        primaryAddressStreet.sendKeys("Main Street, 14");
 
         primaryAddressCity.click();
-        primaryAddressCity.sendKeys();
+        primaryAddressCity.sendKeys("Delaware");
 
         primaryAddressState.click();
-        primaryAddressState.sendKeys();
+        primaryAddressState.sendKeys("Ohaio");
 
         primaryAddressPostalcode.click();
-        primaryAddressPostalcode.sendKeys();
+        primaryAddressPostalcode.sendKeys("43015");
 
         primaryAddressCountry.click();
-        primaryAddressCountry.sendKeys();
+        primaryAddressCountry.sendKeys("USA");
 
         otherAddressStreet.click();
-        otherAddressStreet.sendKeys();
+        otherAddressStreet.sendKeys("London Street, 17");
 
         otherAddressCity.click();
-        otherAddressCity.sendKeys();
+        otherAddressCity.sendKeys("Delaware");
 
         otherAddressState.click();
-        otherAddressState.sendKeys();
+        otherAddressState.sendKeys("Ohaio");
 
         otherAddressPostalcode.click();
-        otherAddressPostalcode.sendKeys();
+        otherAddressPostalcode.sendKeys("43015");
 
         otherAddressCountry.click();
-        otherAddressCountry.sendKeys();
+        otherAddressCountry.sendKeys("USA");
 
         description.click();
-        description.sendKeys();
+        description.sendKeys("Description 1");
+
+        clearAssignedTo.click();
 
         assignedTo.click();
-        assignedTo.sendKeys();
+        assignedTo.sendKeys("Administrator");
 
         leadSource.click();
-        leadSource.sendKeys();
+        leadSource.sendKeys("conference");
 
         reportsTo.click();
-        reportsTo.sendKeys();
+        reportsTo.sendKeys("Sally");
 
         campaign.click();
-        campaign.sendKeys();
+        campaign.sendKeys("Ohaio Committee");
 
         saveButton.click();
 
-        }
+    }
 
+    public void recoverDataContactIntroContact() throws InterruptedException {
 
+        firstName.click();
+        firstName.sendKeys("Abcdefg");
+
+        lastName.click();
+        lastName.sendKeys("Hijklmn");
+
+        saveButton.click();
+
+    }
 
     public PageCreateContact(WebDriver driver) {
         PageFactory.initElements(driver, this);

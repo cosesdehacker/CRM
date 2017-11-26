@@ -47,6 +47,8 @@ public class PageDashboard {
     @FindBy(xpath = "(.//*[@id='quickcreatetop']/ul)[3]/li[2]/a")
     public WebElement createContact;
 
+    @FindBy(xpath = "(.//*[@id='quickcreatetop']/ul)[3]/li[5]/a")
+    public WebElement createDocument;
 
     //LUPA
 
@@ -161,6 +163,7 @@ public class PageDashboard {
        quadreTextLupa.click();
        quadreTextLupa.sendKeys(textCerca);
        lupaPetita.click();
+
        Assert.assertTrue(quadreCercaLupaSecundari.getAttribute("value").equals(textCerca));
 
        quadreNomLupaSecundari.click();

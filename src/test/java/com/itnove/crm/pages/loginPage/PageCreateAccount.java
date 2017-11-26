@@ -62,6 +62,9 @@ public class PageCreateAccount {
     @FindBy(id = "description")
     public WebElement description;
 
+    @FindBy(xpath = "id(\"btn_clr_assigned_user_name\")/img[1]")
+    public WebElement assignedToClear;
+
     @FindBy(id = "assigned_user_name")
     public WebElement assignedTo;
 
@@ -87,76 +90,90 @@ public class PageCreateAccount {
 
     public void fillInFields() {
 
-    name.click();
-    name.sendKeys();
+        name.click();
+        name.sendKeys("Lluisa");
 
-    phoneOffice.click();
-    phoneOffice.sendKeys();
+        phoneOffice.click();
+        phoneOffice.sendKeys("33-33333333");
 
-    website.click();
-    website.sendKeys();
+        website.click();
+        website.sendKeys("lluisa.wordpress.com");
 
-    fax.click();
-    fax.sendKeys();
+        fax.click();
+        fax.sendKeys("44-44444444");
 
-    email.click();
-    email.sendKeys();
+        email.click();
+        email.sendKeys("cristina@barcelonaactiva.cat");
 
-    billingAddressStreet.click();
-    billingAddressStreet.sendKeys();
+        billingAddressStreet.click();
+        billingAddressStreet.sendKeys("Main Street 14");
 
-    billingAddressCity.click();
-    billingAddressCity.sendKeys();
+        billingAddressCity.click();
+        billingAddressCity.sendKeys("Delaware");
 
-    billingAddressState.click();
-    billingAddressState.sendKeys();
+        billingAddressState.click();
+        billingAddressState.sendKeys("Ohaio");
 
-    billingAddressPostalcode.click();
-    billingAddressPostalcode.sendKeys();
+        billingAddressPostalcode.click();
+        billingAddressPostalcode.sendKeys("43015");
 
-    billingAddressCountry.click();
-    billingAddressCountry.sendKeys();
+        billingAddressCountry.click();
+        billingAddressCountry.sendKeys("USA");
 
-    shippingAddressStreet.click();
-    shippingAddressStreet.sendKeys();
+        shippingAddressStreet.click();
+        shippingAddressStreet.sendKeys("London Street 17");
 
-    shippingAddressCity.click();
-    shippingAddressCity.sendKeys();
+        shippingAddressCity.click();
+        shippingAddressCity.sendKeys("Delaware");
 
-    shippingAddressState.click();
-    shippingAddressState.sendKeys();
+        shippingAddressState.click();
+        shippingAddressState.sendKeys("Ohaio");
 
-    shippingAddressPostalcode.click();
-    shippingAddressPostalcode.sendKeys();
+        shippingAddressPostalcode.click();
+        shippingAddressPostalcode.sendKeys("43015");
 
-    shippingAddressCountry.click();
-    shippingAddressCountry.sendKeys();
+        shippingAddressCountry.click();
+        shippingAddressCountry.sendKeys("USA");
 
-    description.click();
-    description.sendKeys();
+        description.click();
+        description.sendKeys("Description 1");
 
-    assignedTo.click();
-    assignedTo.sendKeys();
+        assignedToClear.click();
 
-    type.click();
-    type.sendKeys();
+        assignedTo.click();
+        assignedTo.sendKeys("Administrator");
 
-    industry.click();
-    industry.sendKeys();
+        type.click();
+        type.sendKeys("Parcel");
 
-    annualRevenue.click();
-    annualRevenue.sendKeys();
+        industry.click();
+        industry.sendKeys("Food");
 
-    employees.click();
-    employees.sendKeys();
+        annualRevenue.click();
+        annualRevenue.sendKeys("Average");
 
-    memberOf.click();
-    memberOf.sendKeys();
+        employees.click();
+        employees.sendKeys("30");
 
-    campaign.click();
-    campaign.sendKeys();
+        memberOf.click();
+        memberOf.sendKeys("Ohaio Committee");
 
-    saveButton.click();
+        campaign.click();
+        campaign.sendKeys("Ohaio Committee");
+
+        saveButton.click();
+
+    }
+
+    public void recoverDataAccountIntroAccount() throws InterruptedException {
+
+        name.click();
+        name.sendKeys("Poiuyt");
+
+        phoneOffice.click();
+        phoneOffice.sendKeys("99-99999999");
+
+        saveButton.click();
 
     }
 
