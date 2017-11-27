@@ -1,16 +1,19 @@
-package com.itnove.crm.SuiteCreate;
+package com.itnove.crm.SuiteCreate.CreateAccount;
 
 import com.itnove.crm.BaseTest;
 import com.itnove.crm.pages.loginPage.PageCreateAccount;
-import com.itnove.crm.pages.loginPage.PageCreateContact;
 import com.itnove.crm.pages.loginPage.PageDashboard;
 import com.itnove.crm.pages.loginPage.PageLogin;
+import org.apache.commons.io.FileUtils;
 import org.junit.Test;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 
+import java.io.File;
 import java.io.IOException;
 
 
-public class SCRM21CreateAccount_RecoverData extends BaseTest{
+public class SCRM24CreateAccount_MandatoryFields_Incorrect extends BaseTest{
 
     @Test
     public void testApp() throws InterruptedException, IOException {
@@ -23,9 +26,10 @@ public class SCRM21CreateAccount_RecoverData extends BaseTest{
         pageDashboard.hoverAndClick(pageDashboard.createAccount, hover);
 
         PageCreateAccount pageCreateAccount = new PageCreateAccount(driver);
-        pageCreateAccount.recoverDataAccountIntroAccount();
+        pageCreateAccount.fillInFieldsMandatoryFieldsIncorrect();
 
-        pageDashboard.lupa("Poiuyt");
+        File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(scrFile, new File("/Users/nasrodo/SCRM24.png"));
 
     }
 

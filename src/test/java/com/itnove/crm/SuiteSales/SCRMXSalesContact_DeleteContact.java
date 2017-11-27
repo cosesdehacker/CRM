@@ -1,7 +1,7 @@
-package com.itnove.crm.SuiteCreate;
+package com.itnove.crm.SuiteSales;
 
 import com.itnove.crm.BaseTest;
-import com.itnove.crm.pages.loginPage.PageCreateAccount;
+import com.itnove.crm.pages.loginPage.PageCreateContact;
 import com.itnove.crm.pages.loginPage.PageDashboard;
 import com.itnove.crm.pages.loginPage.PageLogin;
 import org.apache.commons.io.FileUtils;
@@ -13,7 +13,7 @@ import java.io.File;
 import java.io.IOException;
 
 
-public class SCRM20CreateAccount_IntroData extends BaseTest{
+public class SCRMXSalesContact_DeleteContact extends BaseTest{
 
     @Test
     public void testApp() throws InterruptedException, IOException {
@@ -23,14 +23,13 @@ public class SCRM20CreateAccount_IntroData extends BaseTest{
 
         PageDashboard pageDashboard = new PageDashboard(driver);
         pageDashboard.createButtonClick(hover);
-        pageDashboard.hoverAndClick(pageDashboard.createAccount, hover);
+        pageDashboard.hoverAndClick(pageDashboard.createContact, hover);
 
-        PageCreateAccount pageCreateAccount = new PageCreateAccount(driver);
-        pageCreateAccount.fillInFields();
+        PageCreateContact pageCreateContact = new PageCreateContact(driver);
+        pageCreateContact.fillInFields();
 
         File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile, new File("/Users/nasrodo/SCRM20.png"));
-
+        FileUtils.copyFile(scrFile, new File("/Users/nasrodo/SCRM22.png"));
 
 
     }

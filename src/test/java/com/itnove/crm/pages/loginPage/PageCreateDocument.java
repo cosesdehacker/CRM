@@ -123,8 +123,6 @@ public class PageCreateDocument {
                 opcioCategory.click();
                 break outlooper;
             }
-
-            System.out.println(i);
         }
 
         subcategoria.click();
@@ -142,8 +140,6 @@ public class PageCreateDocument {
                 break outlooper;
             }
 
-            System.out.println(i);
-
         }
 
         description.click();
@@ -153,6 +149,25 @@ public class PageCreateDocument {
         assignedTo.clear();
         assignedTo.sendKeys("Cristina");
 
+
+    }
+
+    public void fillInFieldsMandatoryFieldsCorrect() throws InterruptedException {
+
+        revision.click();
+        revision.clear();
+        revision.sendKeys("3");
+
+        publishDate.click();
+        publishDate.clear();
+        publishDate.sendKeys("2017-11-21");
+
+    }
+
+    public void fillInFieldsMandatoryFieldsIncorrect() throws InterruptedException {
+
+        description.click();
+        description.sendKeys("Anything");
 
     }
 
@@ -168,25 +183,6 @@ public class PageCreateDocument {
         saveButton.click();
     }
 
-        /*
-
-    public void recoverDataDocumentIntroDocument() throws InterruptedException {
-
-        fileName.click();
-        fileName.sendKeys("Lluisa");
-
-        documentName.click();
-        documentName.sendKeys("lluisa.wordpress.com");
-
-        revision.click();
-        revision.sendKeys("44-44444444");
-
-        publishDate.click();
-        publishDate.sendKeys("Delaware");
-
-        saveButton.click();
-
-    }*/
 
     public PageCreateDocument(WebDriver driver) {
         PageFactory.initElements(driver, this);

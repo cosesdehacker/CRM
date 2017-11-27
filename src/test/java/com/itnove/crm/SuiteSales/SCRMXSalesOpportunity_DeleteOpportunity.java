@@ -1,4 +1,4 @@
-package com.itnove.crm.SuiteCreate;
+package com.itnove.crm.SuiteSales;
 
 import com.itnove.crm.BaseTest;
 import com.itnove.crm.pages.loginPage.PageCreateContact;
@@ -13,7 +13,7 @@ import java.io.File;
 import java.io.IOException;
 
 
-public class SCRM23CreateContact_RecoverData extends BaseTest{
+public class SCRMXSalesOpportunity_DeleteOpportunity extends BaseTest{
 
     @Test
     public void testApp() throws InterruptedException, IOException {
@@ -26,9 +26,10 @@ public class SCRM23CreateContact_RecoverData extends BaseTest{
         pageDashboard.hoverAndClick(pageDashboard.createContact, hover);
 
         PageCreateContact pageCreateContact = new PageCreateContact(driver);
-        pageCreateContact.recoverDataContactIntroContact();
+        pageCreateContact.fillInFields();
 
-        pageDashboard.lupa("Abcdefg");
+        File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(scrFile, new File("/Users/nasrodo/SCRM22.png"));
 
 
     }

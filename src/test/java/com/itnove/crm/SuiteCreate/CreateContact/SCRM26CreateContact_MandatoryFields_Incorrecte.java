@@ -1,4 +1,4 @@
-package com.itnove.crm.SuiteCreate;
+package com.itnove.crm.SuiteCreate.CreateContact;
 
 import com.itnove.crm.BaseTest;
 import com.itnove.crm.pages.loginPage.PageCreateContact;
@@ -13,7 +13,7 @@ import java.io.File;
 import java.io.IOException;
 
 
-public class SCRM22CreateContact_IntroData extends BaseTest{
+public class SCRM26CreateContact_MandatoryFields_Incorrecte extends BaseTest{
 
     @Test
     public void testApp() throws InterruptedException, IOException {
@@ -26,10 +26,10 @@ public class SCRM22CreateContact_IntroData extends BaseTest{
         pageDashboard.hoverAndClick(pageDashboard.createContact, hover);
 
         PageCreateContact pageCreateContact = new PageCreateContact(driver);
-        pageCreateContact.fillInFields();
+        pageCreateContact.fillInFieldsMandatoryFieldsIncorrect();
 
         File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile, new File("/Users/nasrodo/SCRM22.png"));
+        FileUtils.copyFile(scrFile, new File("/Users/nasrodo/SCRM26.png"));
 
 
     }

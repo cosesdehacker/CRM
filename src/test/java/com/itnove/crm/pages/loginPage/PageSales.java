@@ -6,7 +6,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class PageCreateAccount {
+public class PageSales {
 
     private WebDriver driver;
     public WebDriverWait wait;
@@ -194,7 +194,7 @@ public class PageCreateAccount {
         saveButton.click();
 
     }
-    public PageCreateAccount(WebDriver driver) {
+    public PageSales(WebDriver driver) {
         PageFactory.initElements(driver, this);
         this.driver = driver;
     }

@@ -1,4 +1,4 @@
-package com.itnove.crm.SuiteCreate;
+package com.itnove.crm.SuiteCreate.CreateDocument;
 
 import com.itnove.crm.BaseTest;
 import com.itnove.crm.pages.loginPage.PageCreateDocument;
@@ -13,7 +13,7 @@ import java.io.File;
 import java.io.IOException;
 
 
-public class SCRM28CreateDocument_IntroData extends BaseTest{
+public class SCRM30CreateDocument_MandatoryFields_Correcte extends BaseTest{
 
     @Test
     public void testApp() throws InterruptedException, IOException {
@@ -26,16 +26,15 @@ public class SCRM28CreateDocument_IntroData extends BaseTest{
         pageDashboard.hoverAndClick(pageDashboard.createDocument, hover);
 
         PageCreateDocument pageCreateDocument = new PageCreateDocument(driver);
-        File file = new File(File.separator + "Users" + File.separator + "nasrodo" + File.separator + "Desktop" + File.separator + "document A.docx");
+        File file = new File(File.separator + "Users" + File.separator + "nasrodo" + File.separator + "Desktop" + File.separator + "document B.docx");
         pageCreateDocument.browseFileName(file.getAbsolutePath());
-        pageCreateDocument.fillInFields();
 
-        pageCreateDocument.browseRelatedDocName("2-logo-B_activa.png");
+        pageCreateDocument.fillInFieldsMandatoryFieldsCorrect();
 
         pageCreateDocument.saveDocument();
 
         File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile, new File("/Users/nasrodo/SCRM28.png"));
+        FileUtils.copyFile(scrFile, new File("/Users/nasrodo/SCRM30.png"));
 
     }
 

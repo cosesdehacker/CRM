@@ -191,6 +191,24 @@ public class PageCreateContact {
 
     }
 
+    public void fillInFieldsMandatoryFieldsIncorrect() throws InterruptedException {
+
+        phoneWork.click();
+        phoneWork.sendKeys("23-23223223");
+
+        saveButton.click();
+
+    }
+
+    public void fillInFieldsMandatoryFieldsCorrect() throws InterruptedException {
+
+        lastName.click();
+        lastName.sendKeys("Puig");
+
+        saveButton.click();
+
+    }
+
     public PageCreateContact(WebDriver driver) {
         PageFactory.initElements(driver, this);
         this.driver = driver;
