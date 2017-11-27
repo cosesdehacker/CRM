@@ -1,198 +1,77 @@
 package com.itnove.crm.pages.loginPage;
 
+import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.util.List;
 
 public class PageSales {
 
     private WebDriver driver;
     public WebDriverWait wait;
 
-    @FindBy(id = "SAVE")
-    public WebElement saveButton;
+    @FindBy (id = "actionLinkTop")
+    public WebElement bulkActions;
 
-    @FindBy(id = "name")
-    public WebElement name;
+    @FindBy (id = "delete_listview_top")
+    public WebElement deleteButton;
 
-    @FindBy(id = "phone_office")
-    public WebElement phoneOffice;
-
-    @FindBy(id = "website")
-    public WebElement website;
-
-    @FindBy(id = "phone_fax")
-    public WebElement fax;
-
-    @FindBy(id = "Accounts0emailAddress0")
-    public WebElement email;
-
-    @FindBy(id = "billing_address_street")
-    public WebElement billingAddressStreet;
-
-    @FindBy(id = "billing_address_city")
-    public WebElement billingAddressCity;
-
-    @FindBy(id = "billing_address_state")
-    public WebElement billingAddressState;
-
-    @FindBy(id = "billing_address_postalcode")
-    public WebElement billingAddressPostalcode;
-
-    @FindBy(id = "billing_address_country")
-    public WebElement billingAddressCountry;
-
-    @FindBy(id = "shipping_address_street")
-    public WebElement shippingAddressStreet;
-
-    @FindBy(id = "shipping_address_city")
-    public WebElement shippingAddressCity;
-
-    @FindBy(id = "shipping_address_state")
-    public WebElement shippingAddressState;
-
-    @FindBy(id = "shipping_address_postalcode")
-    public WebElement shippingAddressPostalcode;
-
-    @FindBy(id = "shipping_address_country")
-    public WebElement shippingAddressCountry;
-
-    @FindBy(id = "description")
-    public WebElement description;
-
-    @FindBy(xpath = "id(\"btn_clr_assigned_user_name\")/img[1]")
-    public WebElement assignedToClear;
-
-    @FindBy(id = "assigned_user_name")
-    public WebElement assignedTo;
-
-    @FindBy(id = "account_type")
-    public WebElement type;
-
-    @FindBy(id = "industry")
-    public WebElement industry;
-
-    @FindBy(id = "annual_revenue")
-    public WebElement annualRevenue;
-
-    @FindBy(id = "employees")
-    public WebElement employees;
-
-    @FindBy(id = "parent_name")
-    public WebElement memberOf;
-
-    @FindBy(id = "campaign_name")
-    public WebElement campaign;
+    @FindBy (id = "listViewNextButton_top")
+    public  WebElement properaFinestraViewAccounts;
 
     //*****************************
 
-    public void fillInFields() {
+    public void chooseElementViewAccounts() {
 
-        name.click();
-        name.sendKeys("Lluisa");
+        List<WebElement> viewAccountsRows = driver.findElements(By.xpath("id('MassUpdate')/div[3]/table[1]/tbody[1]/tr"));
 
-        phoneOffice.click();
-        phoneOffice.sendKeys("33-33333333");
+        mainouterloop:
+        for (int i = 1; i < (viewAccountsRows.size() + 1); i++) {
 
-        website.click();
-        website.sendKeys("lluisa.wordpress.com");
+            List<WebElement> viewAccountsColumns = driver.
+                    findElements(By.xpath("id('MassUpdate')/div[3]/table[1]/tbody[1]/tr[" + i + "]/td"));
 
-        fax.click();
-        fax.sendKeys("44-44444444");
+            outerloop:
+            for (int j = 1; j < (viewAccountsColumns.size() + 1); j++) {
 
-        email.click();
-        email.sendKeys("cristina@barcelonaactiva.cat");
+                WebElement viewAccountsColumn = driver.
+                        findElement(By.xpath("id('MassUpdate')/div[3]/table[1]/tbody[1]/tr[" + i + "]/td[" + j + "]"));
 
-        billingAddressStreet.click();
-        billingAddressStreet.sendKeys("Main Street 14");
+                if ((viewAccountsColumn.getAttribute("type")) != null) {
 
-        billingAddressCity.click();
-        billingAddressCity.sendKeys("Delaware");
+                    if (viewAccountsColumn.getAttribute("type").equals("name")) {
 
-        billingAddressState.click();
-        billingAddressState.sendKeys("Ohaio");
+                        WebElement checkName = driver.
+                                findElement(By.xpath("id('MassUpdate')/div[3]/table[1]/tbody[1]/tr[" + i + "]/td[" + j + "]/b/a"));
 
-        billingAddressPostalcode.click();
-        billingAddressPostalcode.sendKeys("43015");
+                        if (checkName.getText().contains("Poiuyt")) {
+                            WebElement tickBoxChosenRow = driver.
+                                    findElement(By.xpath("id('MassUpdate')/div[3]/table[1]/tbody[1]/" +
+                                            "tr[" + i + "]/td" + j + "]/input"));
+                            tickBoxChosenRow.click();
+                            bulkActions.click();
+                            deleteButton.click();
 
-        billingAddressCountry.click();
-        billingAddressCountry.sendKeys("USA");
+                            break mainouterloop;
 
-        shippingAddressStreet.click();
-        shippingAddressStreet.sendKeys("London Street 17");
+                        } else {
 
-        shippingAddressCity.click();
-        shippingAddressCity.sendKeys("Delaware");
+                            break outerloop;
+                        }
+                    }
+                }
+            }
+        }
 
-        shippingAddressState.click();
-        shippingAddressState.sendKeys("Ohaio");
+        properaFinestraViewAccounts.click();
 
-        shippingAddressPostalcode.click();
-        shippingAddressPostalcode.sendKeys("43015");
-
-        shippingAddressCountry.click();
-        shippingAddressCountry.sendKeys("USA");
-
-        description.click();
-        description.sendKeys("Description 1");
-
-        assignedToClear.click();
-
-        assignedTo.click();
-        assignedTo.sendKeys("Administrator");
-
-        type.click();
-        type.sendKeys("Parcel");
-
-        industry.click();
-        industry.sendKeys("Food");
-
-        annualRevenue.click();
-        annualRevenue.sendKeys("Average");
-
-        employees.click();
-        employees.sendKeys("30");
-
-        memberOf.click();
-        memberOf.sendKeys("Ohaio Committee");
-
-        campaign.click();
-        campaign.sendKeys("Ohaio Committee");
-
-        saveButton.click();
-
-    }
-
-    public void recoverDataAccountIntroAccount() throws InterruptedException {
-
-        name.click();
-        name.sendKeys("Poiuyt");
-
-        phoneOffice.click();
-        phoneOffice.sendKeys("99-99999999");
-
-        saveButton.click();
-
-    }
-    public void fillInFieldsMandatoryFieldsCorrect() {
-
-
-        name.click();
-        name.sendKeys("Clara");
-
-        saveButton.click();
-
-    }
-    public void fillInFieldsMandatoryFieldsIncorrect() {
-
-
-        phoneOffice.click();
-        phoneOffice.sendKeys("56-56756756");
-
-        saveButton.click();
-
+        //i li vull dir que torno a començar
     }
     public PageSales(WebDriver driver) {
         PageFactory.initElements(driver, this);

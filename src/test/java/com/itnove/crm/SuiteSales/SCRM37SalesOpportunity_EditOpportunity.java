@@ -13,7 +13,7 @@ import java.io.File;
 import java.io.IOException;
 
 
-public class SCRMXSalesOpportunity_EditOpportunity extends BaseTest{
+public class SCRM37SalesOpportunity_EditOpportunity extends BaseTest{
 
     @Test
     public void testApp() throws InterruptedException, IOException {

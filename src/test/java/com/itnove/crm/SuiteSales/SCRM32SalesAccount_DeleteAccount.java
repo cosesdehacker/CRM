@@ -4,6 +4,7 @@ import com.itnove.crm.BaseTest;
 import com.itnove.crm.pages.loginPage.PageCreateContact;
 import com.itnove.crm.pages.loginPage.PageDashboard;
 import com.itnove.crm.pages.loginPage.PageLogin;
+import com.itnove.crm.pages.loginPage.PageSales;
 import org.apache.commons.io.FileUtils;
 import org.junit.Test;
 import org.openqa.selenium.OutputType;
@@ -13,7 +14,7 @@ import java.io.File;
 import java.io.IOException;
 
 
-public class SCRMXSalesContact_DeleteContact extends BaseTest{
+public class SCRM32SalesAccount_DeleteAccount extends BaseTest{
 
     @Test
     public void testApp() throws InterruptedException, IOException {
@@ -22,14 +23,15 @@ public class SCRMXSalesContact_DeleteContact extends BaseTest{
         pageLogin.login("user", "bitnami");
 
         PageDashboard pageDashboard = new PageDashboard(driver);
-        pageDashboard.createButtonClick(hover);
-        pageDashboard.hoverAndClick(pageDashboard.createContact, hover);
+        pageDashboard.chooseFromSales("Accounts");
 
-        PageCreateContact pageCreateContact = new PageCreateContact(driver);
-        pageCreateContact.fillInFields();
+        PageSales pageSales = new PageSales(driver);
+        pageSales.chooseElementViewAccounts();
+
+        //assert
 
         File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(scrFile, new File("/Users/nasrodo/SCRM22.png"));
+        FileUtils.copyFile(scrFile, new File("/Users/nasrodo/SCRM32.png"));
 
 
     }

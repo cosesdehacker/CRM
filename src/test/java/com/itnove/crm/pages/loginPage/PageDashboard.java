@@ -114,7 +114,28 @@ public class PageDashboard {
             Thread.sleep(2000);
             Assert.assertTrue(!(current.equals(driver.getCurrentUrl())));
         }
+    }
 
+    public void chooseFromSales(String chosenElement) throws InterruptedException {
+
+        Actions hover = new Actions(driver);
+
+        hover.moveToElement(sales).click().build().perform();
+        Thread.sleep(6000);
+
+        List<WebElement> desplegarSales = driver.findElements(By.xpath("id('grouptab_0')/../ul/li"));
+
+        for (int i = 1; i < (desplegarSales.size() + 1); i++) {
+
+            WebElement elementSales = driver.
+                    findElement(By.xpath("id('grouptab_0')/../ul/li[" + i + "]/a"));
+
+            if (elementSales.getAttribute("module").contains(chosenElement)) {
+                hover.moveToElement(elementSales).click().build().perform();
+
+                break;
+            }
+        }
     }
 
     public void clickMarketingDesplegable() throws InterruptedException {

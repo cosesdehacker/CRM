@@ -13,7 +13,7 @@ import java.io.File;
 import java.io.IOException;
 
 
-public class SCRMXSalesContact_EditContact extends BaseTest{
+public class SCRM38SalesContact_DeleteContact extends BaseTest{
 
     @Test
     public void testApp() throws InterruptedException, IOException {
