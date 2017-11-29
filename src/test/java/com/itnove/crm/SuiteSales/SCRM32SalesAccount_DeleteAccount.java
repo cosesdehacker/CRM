@@ -26,7 +26,7 @@ public class SCRM32SalesAccount_DeleteAccount extends BaseTest{
         pageDashboard.chooseFromSales("Accounts");
 
         PageSales pageSales = new PageSales(driver);
-        pageSales.chooseElementViewAccounts();
+        pageSales.chooseElementViewAccounts(hover, "Poiuyt");
 
         //assert
 
